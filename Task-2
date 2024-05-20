@@ -9,7 +9,7 @@ public class Grade {
 
         int totalMarks = 0;
         for (int i = 1; i <= numSubjects; i++) {
-            System.out.print("Enter marks obtained in subject " + i + ": ");
+            System.out.print("Enter marks obtained in subject " + i + "(out of 100)" + ":");
             totalMarks += scanner.nextInt();
         }
 
