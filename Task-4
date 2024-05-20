@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+class QuizQuestion {
+    String question;
+    String[] options;
+    int correctAnswerIndex;
+
+    public QuizQuestion(String question, String[] options, int correctAnswerIndex) {
+        this.question = question;
+        this.options = options;
+        this.correctAnswerIndex = correctAnswerIndex;
+    }
+}
+
+public class QuizApplication {
+    public static void main(String[] args) {
+        QuizQuestion[] questions = {
+                new QuizQuestion("What is the capital of France?", new String[]{"A. London", "B. Paris", "C. Berlin", "D. Rome"}, 1),
+                new QuizQuestion("Which planet is known as the Red Planet?", new String[]{"A. Earth", "B. Mars", "C. Jupiter", "D. Venus"}, 1),
+                new QuizQuestion("Who was the captain of India in the World Cup final 2011?", new String[]{"A.sachin Tendulkar","B.viratkohli","C.Ms.Dhoni","D.RohitSharma"},2)
+        };
+
+        int score = 0;
+        Scanner scanner = new Scanner(System.in);
+
+        for (QuizQuestion question : questions) {
+            System.out.println(question.question);
+            for (String option : question.options) {
+                System.out.println(option);
+            }
+
+            System.out.print("Enter your answer (A/B/C/D): ");
+            String userAnswer = scanner.nextLine().toUpperCase();
+
+            if (userAnswer.equals("A") || userAnswer.equals("B") || userAnswer.equals("C") || userAnswer.equals("D")) {
+                int userAnswerIndex = userAnswer.charAt(0) - 'A';
+                if (userAnswerIndex == question.correctAnswerIndex) {
+                    System.out.println("Correct!\n");
+                    score++;
+                } else {
+                    System.out.println("Incorrect. The correct answer is: " + question.options[question.correctAnswerIndex] + "\n");
+                }
+            } else {
+                System.out.println("Invalid choice. Skipping to next question.\n");
+            }
+        }
+
+        System.out.println("Quiz completed. Your final score is: " + score + "/" + questions.length);
+        scanner.close();
+}
+}
